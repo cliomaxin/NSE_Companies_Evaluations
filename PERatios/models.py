@@ -7,4 +7,6 @@ class PE_Data(models.Model):
     current_share_price = models.DecimalField(max_digits=5, decimal_places=2, default='', blank=True, null=True)
     earnings_per_share = models.DecimalField(max_digits=5, decimal_places=2, default='', blank=True, null=True)
     highest_earnings_per_share = models.DecimalField(max_digits=5, decimal_places=2, default='', blank=True, null=True)
-  
+
+    def __str__(self):
+        return self.company_name or 'Unnamed Company'
