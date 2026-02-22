@@ -9,9 +9,9 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
+    pe_data = PE_Data.objects.all()
     context = {
-        'variable_name': 'Hello, Django!',
-        'another_variable': 123
+        'pe_data': pe_data,
     }
     # The render function takes the request, the template name, and an optional dictionary (context)
     return render(request, 'peratios.html', context)

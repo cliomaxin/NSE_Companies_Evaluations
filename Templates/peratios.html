@@ -250,54 +250,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for item in pe_data %}
                         <tr>
-                            <td class="company-name">Reliance Industries</td>
-                            <td class="price-cell"><span class="currency">₹</span>2,850.50</td>
-                            <td class="eps-cell"><span class="currency">₹</span>142.30</td>
-                            <td class="pe-ratio-cell pe-medium">20.04</td>
+                            <td class="company-name">{{ item.company_name }}</td>
+                            <td class="price-cell"><span class="currency">₹</span>{{ item.current_share_price }}</td>
+                            <td class="eps-cell"><span class="currency">₹</span>{{ item.earnings_per_share }}</td>
+                            <td class="pe-ratio-cell pe-medium">{{ item.highest_earnings_per_share }}</td>
                         </tr>
-                        <tr>
-                            <td class="company-name">TCS</td>
-                            <td class="price-cell"><span class="currency">₹</span>3,525.20</td>
-                            <td class="eps-cell"><span class="currency">₹</span>185.75</td>
-                            <td class="pe-ratio-cell pe-medium">18.98</td>
-                        </tr>
-                        <tr>
-                            <td class="company-name">HDFC Bank</td>
-                            <td class="price-cell"><span class="currency">₹</span>1,680.40</td>
-                            <td class="eps-cell"><span class="currency">₹</span>98.60</td>
-                            <td class="pe-ratio-cell pe-low">17.04</td>
-                        </tr>
-                        <tr>
-                            <td class="company-name">Infosys</td>
-                            <td class="price-cell"><span class="currency">₹</span>1,420.80</td>
-                            <td class="eps-cell"><span class="currency">₹</span>72.15</td>
-                            <td class="pe-ratio-cell pe-low">19.70</td>
-                        </tr>
-                        <tr>
-                            <td class="company-name">ITC Limited</td>
-                            <td class="price-cell"><span class="currency">₹</span>458.25</td>
-                            <td class="eps-cell"><span class="currency">₹</span>14.85</td>
-                            <td class="pe-ratio-cell pe-low">30.87</td>
-                        </tr>
-                        <tr>
-                            <td class="company-name">Wipro</td>
-                            <td class="price-cell"><span class="currency">₹</span>445.60</td>
-                            <td class="eps-cell"><span class="currency">₹</span>22.40</td>
-                            <td class="pe-ratio-cell pe-low">19.89</td>
-                        </tr>
-                        <tr>
-                            <td class="company-name">Asian Paints</td>
-                            <td class="price-cell"><span class="currency">₹</span>3,250.75</td>
-                            <td class="eps-cell"><span class="currency">₹</span>125.30</td>
-                            <td class="pe-ratio-cell pe-high">25.94</td>
-                        </tr>
-                        <tr>
-                            <td class="company-name">Bharti Airtel</td>
-                            <td class="price-cell"><span class="currency">₹</span>925.40</td>
-                            <td class="eps-cell"><span class="currency">₹</span>-5.20</td>
-                            <td class="pe-ratio-cell pe-high">N/A</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
