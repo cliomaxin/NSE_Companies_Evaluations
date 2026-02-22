@@ -253,9 +253,9 @@
                         {% for item in pe_data %}
                         <tr>
                             <td class="company-name">{{ item.company_name }}</td>
-                            <td class="price-cell"><span class="currency">₹</span>{{ item.current_share_price }}</td>
-                            <td class="eps-cell"><span class="currency">₹</span>{{ item.earnings_per_share }}</td>
-                            <td class="pe-ratio-cell pe-medium">{{ item.highest_earnings_per_share }}</td>
+                            <td class="price-cell"><span class="currency">Ksh</span>{{ item.current_share_price }}</td>
+                            <td class="eps-cell"><span class="currency">Ksh</span>{{ item.earnings_per_share }}</td>
+                            <td class="pe-ratio-cell pe-medium">{{ item.pe_ratio }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
