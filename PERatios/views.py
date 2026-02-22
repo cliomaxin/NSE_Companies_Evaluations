@@ -11,7 +11,6 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     pe_data = PE_Data.objects.all()
     
-    # Calculate PE Ratio for each company
     data_with_ratio = []
     for item in pe_data:
         if item.earnings_per_share and item.earnings_per_share > 0:
@@ -26,8 +25,10 @@ def index(request):
             'pe_ratio': pe_ratio
         })
     
+    # Sort by PE ratio in descending order
+    data_with_ratio = sorted(data_with_ratio, key=lambda x: x['pe_ratio'], reverse=True)
+    
     context = {
         'pe_data': data_with_ratio,
     }
-    # The render function takes the request, the template name, and an optional dictionary (context)
     return render(request, 'peratios.html', context)
