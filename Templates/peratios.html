@@ -49,6 +49,90 @@
             font-weight: 300;
         }
 
+        /* Navbar & Mobile Sidebar */
+        .site-nav-wrap { width: 100%; background: linear-gradient(180deg,#001025 0%, #042a5f 100%); padding: 8px 0; box-shadow: 0 6px 20px rgba(1,26,60,0.15); }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: transparent;
+            padding: 12px 20px;
+            border-radius: 0;
+            box-shadow: none;
+            color: #fff;
+        }
+
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+
+        .nav-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .nav-logo img { height: 36px; width: auto; display: block; border-radius:6px; }
+
+        .nav-links {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .nav-links a { color: #fff; text-decoration: none; font-weight:600; }
+
+        .hamburger {
+            display: none;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            color: #fff;
+        }
+
+        .hamburger .bar { width: 22px; height: 2px; background:#2c3e50; display:block; position:relative; }
+        .hamburger .bar:before, .hamburger .bar:after { content:''; position:absolute; left:0; right:0; height:2px; background:#2c3e50; }
+        .hamburger .bar:before { top:-7px; }
+        .hamburger .bar:after { top:7px; }
+
+        /* Sidebar (mobile) */
+        .sidebar-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:1200; }
+        .sidebar { display:none; position:fixed; top:0; left:0; height:100vh; width:280px; background:linear-gradient(180deg,#013a8b 0%, #042a5f 100%); color:#e6f3ff; padding:20px; z-index:1250; box-shadow: 4px 0 30px rgba(1,26,60,0.6); }
+        .sidebar .close-btn { background:transparent; border:0; color:#e6f3ff; font-size:22px; cursor:pointer; display:flex; align-items:center; gap:8px; }
+        .sidebar .menu { margin-top:18px; display:flex; flex-direction:column; gap:12px; }
+        .sidebar a { color:#e6f3ff; text-decoration:none; font-weight:600; padding:10px 6px; border-radius:8px; }
+        .sidebar a:hover { background: rgba(255,255,255,0.04); }
+
+        /* Show hamburger on small screens, hide default nav links */
+        @media (max-width: 768px) {
+            .site-nav-wrap { background: transparent; box-shadow:none; }
+            .navbar { background: white; color: #2c3e50; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+            .nav-logo, .nav-links a, .contribute-btn { color: #2c3e50; }
+            .navbar { padding: 12px 14px; }
+            .nav-links { display: none; }
+            .hamburger { display:flex; }
+            header { padding: 12px 10px; text-align: left; }
+            header h1 { font-size: 1.3em; margin-bottom: 4px; }
+            header p { font-size: 0.95em; color: #444; }
+        }
+
+        /* Desktop: show nav links inline */
+        @media (min-width: 769px) {
+            header { text-align: left; padding: 20px; }
+            .container > header + .table-wrapper { margin-top: 0; }
+        }
+
         .table-wrapper {
             background: white;
             border-radius: 15px;
@@ -141,11 +225,61 @@
         }
 
         footer {
-            text-align: center;
             margin-top: 30px;
-            color: white;
-            padding: 20px;
+            padding: 22px 28px;
+            font-size: 0.95em;
+            color: #e6f3ff;
+            background: linear-gradient(180deg, #042a5f 0%, #013a8b 100%);
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(1, 26, 60, 0.45);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .footer-left {
+            flex: 1 1 320px;
+            color: #dceeff;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 0 1 auto;
+        }
+
+        .contribute-note {
+            color: #cfe8ff;
             font-size: 0.9em;
+            margin-right: 8px;
+        }
+
+        .contribute-btn {
+            display: inline-block;
+            background: linear-gradient(180deg,#d0ac0b 0%,#eed753 100%);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 6px 14px rgba(6, 76, 168, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .contribute-btn:hover,
+        .contribute-btn:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(6, 76, 168, 0.45);
+        }
+
+        .contribute-small {
+            display: block;
+            font-size: 0.8em;
+            color: #bfe0ff;
+            margin-top: 4px;
         }
 
         /* Responsive Design */
@@ -232,11 +366,50 @@
     </style>
 </head>
 <body>
+    <div class="site-nav-wrap">
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="nav-left">
+                <a class="nav-logo" href="/">
+                    <img src="https://cliomaxin.github.io/maksimfelix/assets/logo-96.png" alt="logo" onerror="this.style.display='none'">
+                    <span>PE Ratio Analysis</span>
+                </a>
+            </div>
+
+            <div class="nav-links" role="menubar">
+                <a href="https://cliomaxin.github.io/maksimfelix/patreon.html" class="contribute-btn" target="_blank" rel="noopener noreferrer">Donate</a>
+                <a href="https://facebook.com/maksimfelix" target="_blank" rel="noopener noreferrer">About Me</a>
+            </div>
+
+            <button class="hamburger" aria-label="Open menu" aria-controls="mobile-sidebar" aria-expanded="false">
+                <span class="bar" aria-hidden="true"></span>
+            </button>
+        </nav>
+    </div>
+
     <div class="container">
         <header>
-            <h1>PE Ratio Analysis</h1>
-            <p>NSE Companies Evaluation - Share Price & Earnings Analysis</p>
+            <div style="padding:14px 0 6px 0">
+                <h1>PE Ratio Analysis</h1>
+                <p>NSE Companies Evaluation - Share Price & Earnings Analysis</p>
+            </div>
         </header>
+
+        <!-- Mobile sidebar + overlay -->
+        <div class="sidebar-overlay" id="sidebar-overlay" tabindex="-1"></div>
+        <aside class="sidebar" id="mobile-sidebar" aria-hidden="true">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="display:flex; align-items:center; gap:10px">
+                    <img src="https://cliomaxin.github.io/maksimfelix/assets/logo-96.png" alt="logo" style="height:36px; border-radius:6px" onerror="this.style.display='none'">
+                    <strong>PE Ratio</strong>
+                </div>
+                <button class="close-btn" id="sidebar-close" aria-label="Close menu">✕</button>
+            </div>
+
+            <nav class="menu" aria-label="Mobile menu">
+                <a href="https://cliomaxin.github.io/maksimfelix/patreon.html" target="_blank" rel="noopener noreferrer">Donate / Contribute</a>
+                <a href="https://facebook.com/maksimfelix">About Me</a>
+            </nav>
+        </aside>
 
         <div class="table-wrapper">
             <div class="table-responsive">
@@ -264,8 +437,52 @@
         </div>
 
         <footer>
-            <p>&copy; 2026 NSE Companies Evaluation. All rights reserved. | Data is for illustrative purposes only.</p>
+            <div class="footer-left">
+                <p>&copy;Maksim Felix | 2026 copyright. All rights reserved. | Data is for illustrative purposes only.</p>
+            </div>
+
+            <div class="footer-right">
+                <div class="contribute-note">Support free resources - keep motivation flowing</div>
+                <a class="contribute-btn" href="https://cliomaxin.github.io/maksimfelix/patreon.html" target="_blank" rel="noopener noreferrer" aria-label="Contribute to support free resources">Buy us Coffee</a>
+            </div>
         </footer>
     </div>
+    <script>
+        (function(){
+            const hamburger = document.querySelector('.hamburger');
+            const sidebar = document.getElementById('mobile-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const closeBtn = document.getElementById('sidebar-close');
+
+            function openSidebar(){
+                sidebar.style.display = 'block';
+                overlay.style.display = 'block';
+                sidebar.setAttribute('aria-hidden','false');
+                hamburger.setAttribute('aria-expanded','true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebar(){
+                sidebar.style.display = 'none';
+                overlay.style.display = 'none';
+                sidebar.setAttribute('aria-hidden','true');
+                hamburger.setAttribute('aria-expanded','false');
+                document.body.style.overflow = '';
+            }
+
+            if(hamburger){
+                hamburger.addEventListener('click', function(){
+                    const expanded = this.getAttribute('aria-expanded') === 'true';
+                    if(expanded) closeSidebar(); else openSidebar();
+                });
+            }
+
+            if(closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            if(overlay) overlay.addEventListener('click', closeSidebar);
+
+            // close on Escape
+            document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeSidebar(); });
+        })();
+    </script>
 </body>
 </html>
